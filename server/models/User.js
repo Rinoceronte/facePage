@@ -5,7 +5,10 @@ import mongoose from 'mongoose';
 
 let userSchema = mongoose.Schema({
     name: String,
-    email: String
+    email: String,
+    birthday: Date,
+    licenseAgreement: Boolean,
+    gender: String
 });
 
 export default mongoose.model('User', userSchema);
