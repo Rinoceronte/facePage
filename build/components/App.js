@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actionCreators from '../actions/actionCreator';
-import BasicExample from './BasicExample';
+import LoggedIn from './loggedIn';
 
 // Redux requires to give a correct mapping of what State should ultimately look like. State is how React and Redux work. What the method below is doing is assigning state to an object, which will represent what props will look like as it descends through the app.
 let mapStateToProps = (state) => {
@@ -24,9 +24,10 @@ class App extends React.Component {
         super();
     }
     render(){
+
         return (
             <div>
-                <BasicExample />
+                <LoggedIn />
             </div>
         );
     }

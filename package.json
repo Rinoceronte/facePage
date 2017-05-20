@@ -1,5 +1,5 @@
 {
-  "name": "react_intro",
+  "name": "facepage",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -21,6 +21,7 @@
     "webpack-dev-middleware": "^1.10.2"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
