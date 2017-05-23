@@ -4,7 +4,7 @@
 // and then returns the new state
 // it is a pure function
 
-let users = (state = [], action) => {
+let users = (state = {}, action) => {
     switch(action.type){
         case 'SELECT_USER':
             console.log('Selecting user ');

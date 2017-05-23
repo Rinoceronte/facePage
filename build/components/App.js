@@ -5,12 +5,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actionCreators from '../actions/actionCreator';
-import LoggedIn from './loggedIn';
+import PublicHomepage from './PublicHomepage';
 
 // Redux requires to give a correct mapping of what State should ultimately look like. State is how React and Redux work. What the method below is doing is assigning state to an object, which will represent what props will look like as it descends through the app.
 let mapStateToProps = (state) => {
     return {
-        users: state.users
+        users: state.users,
+        loggedIn: state.loggedIn
     }
 };
 
@@ -26,9 +27,20 @@ class App extends React.Component {
     render(){
 
         return (
-            <div>
-                <LoggedIn />
-            </div>
+            <BrowserRouter>
+                <div>
+                    <Link to="/">Home</Link><br/>
+                    <Route path='/' render={(routeProps) => <PublicHomepage {...this.props} {...routeProps} />} />
+                    <Link to="/users">Users</Link>
+                    <Route path="/users" render={() => (<Users {...this.props} />)}></Route>
+                    <Route path='/users/:id' render={(routerProps) => (<loggedIn {...this.props} {...routerProps}/>)}></Route>
+                </div>
+            </BrowserRouter>
+
+
+            // <div>
+            //     <PublicHomepage />
+            // </div>
         );
     }
 }
