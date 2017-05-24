@@ -9,6 +9,7 @@ import rootReducer from './reducers/index';
 // This should be an outline of every possible state your app can be in.
 const defaultState = {
     users: {
+        _id: "",
         name: '',
         email: ''
     },

@@ -20,7 +20,7 @@ export default class Registration extends React.Component{
             name,
             password
           }).then(res => {
-              console.log('We have registered a user!', res.data.currentUser);
+              console.log('We have registered a user!', res.data.User);
               if(res.data.loggedIn){
                   this.props.history.push('/secure');
               }
@@ -49,16 +49,16 @@ export default class Registration extends React.Component{
     return(
       <div>
         <h3>Sign Up</h3>
-        <label>Name: <input type="text" ref="name" /></label>
-        <label>Email: <input type="email" ref="email" /></label>
-        <label>Password: <input type="password" ref="password" /></label>
-        <label>Confirm Password: <input type="password" ref="passwordConfirm" /></label>
-        {}
-        <button type="button" onClick={this.handleClick}>Register</button>
-        <div>- or - </div>
-        <div>
-            <Link to="/">Home</Link>
-        </div>
+            <label>Name: <input type="text" ref="name" /></label>
+            <label>Email: <input type="email" ref="email" /></label>
+            <label>Password: <input type="password" ref="password" /></label>
+            <label>Confirm Password: <input type="password" ref="passwordConfirm" /></label>
+            {}
+            <button type="button" onClick={this.handleClick}>Register</button>
+            <div>- or - </div>
+            <div>
+                <Link to="/">Home</Link>
+            </div>
       </div>
     );
   }

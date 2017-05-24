@@ -5,6 +5,7 @@ import {routerReducer} from 'react-router-redux';
 import users from './user';
 import loggedIn from './loggedIn';
 
+// const rootReducer = combineReducers({loggedIn, user, routing: routerReducer});
 const rootReducer = combineReducers({users: users, loggedIn: loggedIn, routing: routerReducer});
 
 export default rootReducer;

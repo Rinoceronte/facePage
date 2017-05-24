@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import LoggedIn from './build/components/loggedIn';
+// import LoggedIn from './build/components/loggedIn';
 
 import App from './build/components/App';
 import store from './build/AppStore';

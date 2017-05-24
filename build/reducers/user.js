@@ -6,20 +6,25 @@
 
 let users = (state = {}, action) => {
     switch(action.type){
-        case 'SELECT_USER':
-            console.log('Selecting user ');
-            let newUserState = state.map(user => {
-                if(user.id === action.userId){
-                    return {...user, selected: true};
-                }
-                else {
-                    return {...user, selected: false};
-                }
-            });
-            return newUserState;
+        case 'LOGIN':
+            console.log('I am the currentUser, trying to LOGIN.');
+            return state;
         default:
         return state;
     }
 }
 
 export default users;
+
+    // switch(action.type){
+    //     case 'SELECT_USER':
+    //         console.log('Selecting user ');
+    //         let newUserState = state.map(user => {
+    //             if(user.id === action.userId){
+    //                 return {...user, selected: true};
+    //             }
+    //             else {
+    //                 return {...user, selected: false};
+    //             }
+    //         });
+    //         return newUserState;
