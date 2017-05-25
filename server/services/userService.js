@@ -7,3 +7,7 @@ import User from '../models/User';
 export let createUser = (user, next) => {
     User.create(user, next);
 };
+
+export let userLogin = (user, next) => {
+    User.find({email: user.email, password: user.password}, next);
+};

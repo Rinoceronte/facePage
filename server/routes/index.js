@@ -4,7 +4,7 @@
  */
 'use strict';
 import {createTask} from '../services/taskService';
-import {createUser} from '../services/userService';
+import {createUser, userLogin} from '../services/userService';
 
 export default (app) => {
 
@@ -20,7 +20,7 @@ export default (app) => {
             let response = {};
             if(!err && data){
                 response = {
-                    users: {
+                    user: {
                         _id: data._id,
                         name: data.name,
                         email: data.email
@@ -33,7 +33,26 @@ export default (app) => {
             }
 
             // Defaults status to 200, res.status(200). This is where you would specify status if needed.
-            res.json(data);
+            res.json(response);
         });
     });
+
+    app.post('/login', (req, res) => {
+        userLogin(req.body, (err, data) => {
+            let response = {};
+            if(!err && data){
+                response = {
+                    user: {
+                        _id: data._id,
+                        name: data.name,
+                        email: data.email
+                    },
+                    loggedIn: true
+                };
+            }
+            else{
+                response = {error: 'User can not be created. Please try again'};
+            }
+        })    
+    })
 }

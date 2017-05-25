@@ -12,7 +12,7 @@ import Authenticate from './Authenticate';
 // Redux requires to give a correct mapping of what State should ultimately look like. State is how React and Redux work. What the method below is doing is assigning state to an object, which will represent what props will look like as it descends through the app.
 let mapStateToProps = (state) => {
     return {
-        users: state.users,
+        user: state.user,
         loggedIn: state.loggedIn
     }
 };
