@@ -13,7 +13,7 @@ export default class PrivateHomepage extends React.Component{
       
     return(
       <div>
-        <h2>Welcome to {facePageUser}</h2>
+        <h1>Welcome {this.props.user.name}</h1>
       </div>
     );
   }

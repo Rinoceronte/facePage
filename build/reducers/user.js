@@ -7,8 +7,14 @@
 let users = (state = {}, action) => {
     switch(action.type){
         case 'LOGIN':
-            console.log('I am the currentUser, trying to LOGIN.');
-            return state;
+        console.log('I am the currentUser, trying to LOGIN.', action);
+        return {...action.users};
+        case 'LOGOUT':
+        return {
+            _id: null,
+            email: null,
+            name: null
+        };
         default:
         return state;
     }

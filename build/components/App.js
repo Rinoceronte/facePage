@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route,Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route,Switch, Link, Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actionCreators from '../actions/actionCreator';
 import PublicHomepage from './PublicHomepage';
-import Registration from './Registration'
+import Authenticate from './Authenticate';
+
 
 // Redux requires to give a correct mapping of what State should ultimately look like. State is how React and Redux work. What the method below is doing is assigning state to an object, which will represent what props will look like as it descends through the app.
 let mapStateToProps = (state) => {
@@ -26,22 +27,28 @@ class App extends React.Component {
         super();
     }
     render(){
-
+        let loggedIn = this.props.loggedIn;
         return (
             <BrowserRouter>
                 <div>
-                    <Link to="/">Home</Link><br/>
-                    <Route exact path='/' render={(routeProps) => <PublicHomepage {...this.props} {...routeProps} />} />
-                    {/*<Link to="/users">Users</Link>
-                    <Route exact path="/users" render={() => (<Users {...this.props} />)}></Route>
-                    <Route exact path='/users/:id' render={(routerProps) => (<loggedIn {...this.props} {...routerProps}/>)}></Route>*/}
+                    <Route path='/' render={(routeProps) => {
+                        if(!loggedIn){
+                            return <PublicHomepage {...this.props} {...routeProps} />
+                        }
+                        else {
+                            return <Redirect to="/secure" />
+                        }
+                        }} />
+                    <Route path="/secure" render={(routeProps) => {
+                        if(loggedIn){
+                            return <Authenticate {...this.props} {...routeProps} />
+                        }
+                        else{
+                            return <Redirect to="/"/>
+                        }
+                    }}/>
                 </div>
             </BrowserRouter>
-
-
-            // <div>
-            //     <PublicHomepage />
-            // </div>
         );
     }
 }
@@ -49,3 +56,7 @@ class App extends React.Component {
 // connect() is used to inject props directly into a container component.
 let ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 export default ConnectedApp;
+
+//                  <Link to="/users">Users</Link>
+//                  <Route path="/users" render={() => (<Users {...this.props} />)}></Route>
+//                  <Route path='/users/:id' render={(routerProps) => (<loggedIn {...this.props} {...routerProps}/>)}></Route>
