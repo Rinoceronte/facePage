@@ -1,97 +1,67 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import axios from 'axios';
 
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+)
 
+const Register = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+)
 
-// class SignUp extends React.Component{
-//   constructor(){
-//     super();
-//     this.signUp = this.signUp.bind(this);
-//   }
-//   signUp() {
-//     axios.post('localhost:3000/register', {
-//     login: {
-//       userName: '',
-//       password: ''
-//     }
-//   })
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log('This user has already been created.');
-//   });
-  
-//   }
+const Topic = ({ match }) => (
+  <div>
+    <h3>{match.params.topicId}</h3>
+  </div>
+)
 
-//   render(){
-//     return(
-//       <div>
-//         <h2>Sign Up</h2>
-//         <label> User Name: <input type='text' ref='username'/></label>
-//         <label> Password: <input type='text' ref='password'/></label>
-//         <label> Confirmation: <input type='text' ref='confirmation'/></label>
-//         <button onClick={signUp} type='button'>Sign Up</button><br />
-//         <Link to='/'>Home</Link>
-//       </div>
-//       );
-//   }
-// }
+const Topics = ({ match }) => (
+  <div>
+    <h2>Welcome to FacePage</h2>
+    <ul>
+      <li>
+        <Link to={`${match.url}/rendering`}>
+          Rendering with React
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/components`}>
+          Components
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/props-v-state`}>
+          Props v. State
+        </Link>
+      </li>
+    </ul>
 
-// class SignIn extends React.Component{
-//   constructor(){
-//     super();
-//     this.signIn = this.signIn.bind(this);
-//   }
-//   signIn() {
-//     axios.post('localhost:3000/authenticate', {
-//     login: {
-//       userName: '',
-//       password: ''
-//     }
-//   })
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log('This ');
-//   });
-  
-//   }
-//   render(){
-//     return(
-//     <div>
-//         <h2>Sign In</h2>
-//         <label> User Name: <input type='text' ref='username'/></label>
-//         <label> Password: <input type='text' ref='password'/></label>
-//         <button onClick={signIn} type='button'>Sign In</button>
-//     </div>
-//     );
-//   }
-// }
+    <Route path={`${match.url}/:topicId`} component={Topic}/>
+    <Route exact path={match.url} render={() => (
+      <h3>Please select a topic.</h3>
+    )}/>
+  </div>
+)
 
-export default class LoggedIn extends React.Component{
-  constructor(){
-    super();
+const BasicExample = () => (
+  <Router>
+    <div>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/topics">Topics</Link></li>
+      </ul>
 
-  }
+      <hr/>
 
-  render(){
-    return(
-      <Router>
-        <div>
-          <SignIn/>
-            <div>
-              or
-            </div>
-            <div>
-              <Link to='/register'>Register</Link>
-            </div>
-            <Route exact path="/register" component={SignUp}/>
-        </div>
-      </Router>
-      );
-
-  }
-}
+      <Route exact path="/" component={Home}/>
+      <Route path="/about" component={About}/>
+      <Route path="/topics" component={Topics}/>
+    </div>
+  </Router>
+)
+export default BasicExample

@@ -27,7 +27,7 @@ export default class PublicHomepage extends React.Component{
             <div>- or -</div>
             <div>
                 <Link to="/signup">Sign-up</Link>
-                <Route exact path='/signup' render={(routeProps) => <Registration {...this.props} {...routeProps} />} />
+                <Route path='/signup' render={(routeProps) => <Registration {...this.props} {...routeProps} />} />
             </div>
         </div>
       </div>

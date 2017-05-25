@@ -5,7 +5,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-// import LoggedIn from './build/components/loggedIn';
+import LoggedIn from './build/components/loggedIn';
+import Registration from './build/components/Registration'
 
 import App from './build/components/App';
 import store from './build/AppStore';
@@ -21,4 +22,4 @@ const router = (
 
 // This line is crucial to bootstrapping React.
 ReactDOM.render(router, document.getElementById('app'));
-ReactDOM.render(<loggedIn/>, document.getElementById('app'));
+//ReactDOM.render(<App/>, document.getElementById('app'));

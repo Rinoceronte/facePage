@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import * as actionCreators from '../actions/actionCreator';
 import PublicHomepage from './PublicHomepage';
+import Registration from './Registration'
 
 // Redux requires to give a correct mapping of what State should ultimately look like. State is how React and Redux work. What the method below is doing is assigning state to an object, which will represent what props will look like as it descends through the app.
 let mapStateToProps = (state) => {
@@ -30,10 +31,10 @@ class App extends React.Component {
             <BrowserRouter>
                 <div>
                     <Link to="/">Home</Link><br/>
-                    <Route path='/' render={(routeProps) => <PublicHomepage {...this.props} {...routeProps} />} />
-                    <Link to="/users">Users</Link>
-                    <Route path="/users" render={() => (<Users {...this.props} />)}></Route>
-                    <Route path='/users/:id' render={(routerProps) => (<loggedIn {...this.props} {...routerProps}/>)}></Route>
+                    <Route exact path='/' render={(routeProps) => <PublicHomepage {...this.props} {...routeProps} />} />
+                    {/*<Link to="/users">Users</Link>
+                    <Route exact path="/users" render={() => (<Users {...this.props} />)}></Route>
+                    <Route exact path='/users/:id' render={(routerProps) => (<loggedIn {...this.props} {...routerProps}/>)}></Route>*/}
                 </div>
             </BrowserRouter>
 
