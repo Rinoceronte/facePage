@@ -13866,14 +13866,17 @@ var Authenticate = function (_React$Component) {
   function Authenticate() {
     _classCallCheck(this, Authenticate);
 
-    return _possibleConstructorReturn(this, (Authenticate.__proto__ || Object.getPrototypeOf(Authenticate)).call(this));
+    var _this = _possibleConstructorReturn(this, (Authenticate.__proto__ || Object.getPrototypeOf(Authenticate)).call(this));
+
+    _this.handleLogout = _this.handleLogout.bind(_this);
+    return _this;
   }
 
   _createClass(Authenticate, [{
     key: 'handleLogout',
     value: function handleLogout() {
-      this.props.logout();
       this.props.history.push('/');
+      this.props.logout();
     }
   }, {
     key: 'render',
@@ -13891,7 +13894,7 @@ var Authenticate = function (_React$Component) {
         _react2.default.createElement('br', null),
         _react2.default.createElement(
           'a',
-          { href: '' },
+          { href: '#', onClick: this.handleLogout },
           'Log Out'
         ),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/secure', render: function render() {
@@ -14058,7 +14061,7 @@ var PublicHomepage = function (_React$Component) {
                 'div',
                 null,
                 _react2.default.createElement(
-                    'h2',
+                    'h1',
                     null,
                     'Welcome to facePage.'
                 ),

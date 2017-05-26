@@ -44,7 +44,7 @@ handleClick(event){
       
     return(
       <div>
-        <h2>Welcome to facePage.</h2>
+        <h1>Welcome to facePage.</h1>
         <div>
             <h2>Sign In</h2>
             <label> Email: <input type='text' ref='email'/></label>
