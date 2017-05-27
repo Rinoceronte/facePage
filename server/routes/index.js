@@ -5,6 +5,7 @@
 'use strict';
 import {createTask} from '../services/taskService';
 import {createUser, userLogin} from '../services/userService';
+import {createComment} from '../services/commentService';
 
 export default (app) => {
 
@@ -55,4 +56,28 @@ export default (app) => {
             }
         })    
     })
+
+    app.post('/status', (req, res) => {
+       createComment(req.body, (err, data) => {
+            let response = {};
+            if(!err && data){
+                response = {
+                    comment: {
+                        _id: data._id,
+                        userCommented: data.user,
+                        date: Date.now(),
+                        comment: data.comment,
+
+                    }
+                };
+            }
+            else{
+                response = {error: 'Comment can not be created. Please try again'};
+            }
+
+            // Defaults status to 200, res.status(200). This is where you would specify status if needed.
+            res.json(response);
+        });
+    });
+    
 }

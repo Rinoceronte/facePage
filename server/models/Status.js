@@ -4,6 +4,7 @@
 import mongoose from 'mongoose';
 
 let statusSchema = mongoose.Schema({
+    statusUser: String,
     createdDate: Date,
     status: String
 });

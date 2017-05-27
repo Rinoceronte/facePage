@@ -4,8 +4,9 @@
 import mongoose from 'mongoose';
 
 let commentSchema = mongoose.Schema({
-    comment: String,
-    createdTime: Date
+        userCommented: String,
+        date: Date,
+        comment: String
 });
 
 export default mongoose.model('Comment', commentSchema);
