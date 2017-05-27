@@ -8,11 +8,15 @@ export default class PublicHomepage extends React.Component{
   constructor(){
     super();
     this.handleClick = this.handleClick.bind(this);
+
+     this.state = {errors: {
+        invalidLogin: false
+    }}
   }
 
 handleClick(event){
-      // Creates a new user
-      if(true){
+      // signed in User
+      
       let email = this.refs.email.value;
       let password = this.refs.password.value;
       try {
@@ -20,28 +24,30 @@ handleClick(event){
             email,
             password
           }).then(res => {
-              console.log('We have registered a user!', res.data.user);
               if(res.data.loggedIn){
                   this.props.history.push('/secure');
+                  this.props.login(res.data.user);
               }
-              this.props.login(res.data.user);
+              else{
+                this.props.history.push('/');
+                 this.setState({
+                  errors: {
+                  invalidLogin: true
+            }
+        });
+              }
+              
           });
       }catch(e){
           console.error(`Caught: ${e}`)
       }
-    }
-    else {
-        // // Re-renders the react component with an invalid mismatchPasswords state.
-        // this.setState({
-        //     errors: {
-        //         mismatchPasswords: true
-        //     }
-        // });
-    }
   }
 
   render(){
-      
+    let errorMessage = null;
+    if(this.state.errors.invalidLogin){
+      errorMessage = (<h4>Invalid Username or Password</h4>);
+    }     
     return(
       <div>
         <h1>Welcome to facePage.</h1>
@@ -50,6 +56,7 @@ handleClick(event){
             <label> Email: <input type='text' ref='email'/></label>
             <label> Password: <input type='password' ref='password'/></label>
             <button type='button' onClick={this.handleClick}>Sign In</button>
+            {errorMessage}
             <div>- or -</div>
             <div>
                 <Link to="/signup">Sign-up</Link>

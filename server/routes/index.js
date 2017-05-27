@@ -41,6 +41,7 @@ export default (app) => {
 
     app.post('/login', (req, res) => {
         userLogin(req.body, (err, data) => {
+           console.log(data)
             let response = {};
             if(!err && data){
                 response = {
@@ -53,8 +54,9 @@ export default (app) => {
                 };
             }
             else{
-                response = {error: 'User can not be created. Please try again'};
+                response = {error: 'Password is incorrect'};
             }
+            res.json(response);
         })    
     })
 

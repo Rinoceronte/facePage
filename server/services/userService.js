@@ -9,5 +9,5 @@ export let createUser = (user, next) => {
 };
 
 export let userLogin = (user, next) => {
-    User.find({email: user.email, password: user.password}, next);
+    User.findOne({email: user.email, password: user.password}, next);
 };
