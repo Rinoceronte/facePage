@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import axios from 'axios';
 
-export default class Comment extends React.Component{
+export default class Status extends React.Component{
   constructor(){
     super();
     this.submitStatus = this.submitStatus.bind(this);
@@ -20,7 +20,7 @@ submitStatus()
             date,
             status
           }).then(res => {
-              console.log('We have created a status', res.data.comment);
+              console.log('We have created a status', res.data.status);
           });
       }catch(e){
           console.error(`Caught: ${e}`)
@@ -40,8 +40,8 @@ submitStatus()
     return(
       <div>
         <h3>What's on your mind?</h3>
-        <textarea ref='status'></textarea>
-        <button type="button" onclick={this.submitStatus}>Comment</button>
+        <textarea ref='status' id='newStatus'></textarea>
+        <button type="button" onClick={this.submitStatus}>Submit</button>
       </div>
     );
   }

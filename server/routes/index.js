@@ -6,6 +6,7 @@
 import {createTask} from '../services/taskService';
 import {createUser, userLogin} from '../services/userService';
 import {createComment} from '../services/commentService';
+import {createStatus} from '../services/statusService';
 
 export default (app) => {
 
@@ -58,21 +59,21 @@ export default (app) => {
     })
 
     app.post('/status', (req, res) => {
-       createComment(req.body, (err, data) => {
+       createStatus(req.body, (err, data) => {
             let response = {};
             if(!err && data){
                 response = {
-                    comment: {
+                    status: {
                         _id: data._id,
-                        userCommented: data.user,
+                        userStatus: data.user,
                         date: Date.now(),
-                        comment: data.comment,
+                        status: data.status,
 
                     }
                 };
             }
             else{
-                response = {error: 'Comment can not be created. Please try again'};
+                response = {error: 'Status can not be created. Please try again'};
             }
 
             // Defaults status to 200, res.status(200). This is where you would specify status if needed.

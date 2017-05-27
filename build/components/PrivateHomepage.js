@@ -18,7 +18,7 @@ export default class PrivateHomepage extends React.Component{
         <h1>Welcome {this.props.user.name}</h1>
         <Link to="/friends">Friends</Link>
         <Route path="/friends" render={(routeProps) => <Friends {...this.props} {...routeProps} />} />
-        <Status />
+        <Status {...this.props}/>
       </div>
     );
   }
