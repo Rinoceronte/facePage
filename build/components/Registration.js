@@ -9,6 +9,7 @@ export default class Registration extends React.Component{
         mismatchPasswords: false
     }}
     this.handleClick = this.handleClick.bind(this);
+    this.handleHome = this.handleHome.bind(this);
   }
 
   handleClick(event){
@@ -43,12 +44,16 @@ export default class Registration extends React.Component{
     }
   }
 
-  render(){
+    handleHome(){
+      this.props.history.push('/');
+    };
+
+    render(){
       let errorMessages = [];
       if(this.state.errors.mismatchPasswords){
           // React.createElement('div', null, 'Error: Passwords don't match.');
           errorMessages.push(<div className="error message">Error: Passwords do not match.</div>);
-      }
+    }
     return(
       <div>
         <h3>Sign Up</h3>
@@ -56,11 +61,10 @@ export default class Registration extends React.Component{
             <label>Email: <input type="email" ref="email" /></label>
             <label>Password: <input type="password" ref="password" /></label>
             <label>Confirm Password: <input type="password" ref="passwordConfirm" /></label>
-            {}
             <button type="button" onClick={this.handleClick}>Register</button>
             <div>- or - </div>
             <div>
-                <Link to="/">Home</Link>
+                <button type="button" onClick={this.handleHome}>Home</button>
             </div>
       </div>
     );

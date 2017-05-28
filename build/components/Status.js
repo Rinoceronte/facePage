@@ -40,7 +40,7 @@ submitStatus()
     return(
       <div>
         <h3>What's on your mind?</h3>
-        <textarea ref='status' id='newStatus'></textarea>
+        <textarea ref='status' id='newStatus'></textarea><br/>
         <button type="button" onClick={this.submitStatus}>Submit</button>
       </div>
     );
