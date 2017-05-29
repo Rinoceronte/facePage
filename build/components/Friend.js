@@ -1,12 +1,12 @@
 import React from 'react';
 
-class Friend extends React.Component {
+export default class Friend extends React.Component {
 	
 render() {
 	return (
 		<li>hi</li>
 
-		// /*<li className='friend'>
+		//<li className='friend'>
 		// 	<img className="profile-pic" src={this.props.pictureUrl} />
 
 		// 		<h3>{this.props.name}</h3>
@@ -14,9 +14,8 @@ render() {
 		// 		<div className="location">
 		// 			Location: {this.props.currentLocation.city}, {this.props.currentLocation.state}, {this.props.currentLocation.country}
 		// 		</div>
-		// </li>*/
+		// </li>
 	);
 }
 }
 
-export default Friend;
