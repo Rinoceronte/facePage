@@ -8,6 +8,7 @@ export default class PublicHomepage extends React.Component{
   constructor(){
     super();
     this.handleClick = this.handleClick.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
 
      this.state = {errors: {
         invalidLogin: false
@@ -43,6 +44,10 @@ handleClick(event){
       }
   }
 
+    handleSignup(){
+      this.props.history.push('/signup');
+    };
+
   render(){
     let errorMessage = null;
     if(this.state.errors.invalidLogin){
@@ -59,7 +64,8 @@ handleClick(event){
             {errorMessage}
             <div>- or -</div>
             <div>
-                <Link to="/signup">Sign-up</Link>
+                <button type='button' onClick={this.handleSignup}>Sign Up</button>
+                {/* <Link to="/signup">Sign-up</Link> */}
                 <Route path='/signup' render={(routeProps) => <Registration {...this.props} {...routeProps} />} />
             </div>
         </div>
