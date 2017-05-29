@@ -18,12 +18,14 @@ export default class FriendsList extends React.Component {
 
     render() {
         return(
-        <div>
-            <Link to="/secure">Home</Link><br/>
-            <a href="#">Log Out</a>
-        </div>)
+
+            <div>
+                <Link to="/secure">Home</Link><br/>
+                <a href="#">Log Out</a>
+            </div>
+            );
             
-        // /*const friendsList = friends.map(friend => (
+        // const friendsList = friends.map(friend => (
         //     <Friend
         //         currentLocation={friend.current_location || {}}
         //         name={friend.name}
@@ -64,6 +66,6 @@ export default class FriendsList extends React.Component {
         //             {friendsList}
         //         </ul>
         //     </div>
-        // );*/
+        // );
     }
 }
