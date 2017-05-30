@@ -3,9 +3,9 @@
  */
 import mongoose from 'mongoose';
 
-let friendSchema = mongoose.Schema({
-    friends: Array
+let FriendSchema = mongoose.Schema({
+    friend: String 
 });
 
-export let Friends = mongoose.model('Friends', friendSchema);
-export let friendSchema = friendSchema;
+export let Friends = mongoose.model('Friends', FriendSchema);
+export let friendSchema = FriendSchema;
