@@ -4,9 +4,9 @@
 import mongoose from 'mongoose';
 
 let statusSchema = mongoose.Schema({
-    statusUser: String,
-    createdDate: Date,
-    status: String
+    createdDate: {type: Date, default: Date.now},
+    status: {type: String, required: true}
 });
 
-export default mongoose.model('Status', statusSchema);
+export let Status =  mongoose.model('Status', statusSchema);
+export let StatusSchema = statusSchema;

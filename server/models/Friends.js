@@ -7,4 +7,5 @@ let friendSchema = mongoose.Schema({
     friends: Array
 });
 
-export default mongoose.model('Friends', friendSchema);
+export let Friends = mongoose.model('Friends', friendSchema);
+export let friendSchema = friendSchema;

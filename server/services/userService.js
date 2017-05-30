@@ -8,6 +8,9 @@ export let createUser = (user, next) => {
     User.create(user, next);
 };
 
+export let pushStatus = (userId, status, next) => {
+    User.update({_id: userId}, {$push: {statuses: status}}, next);
+}
 export let userLogin = (user, next) => {
     User.findOne({email: user.email, password: user.password}, next);
 };

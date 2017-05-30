@@ -11,7 +11,8 @@ const defaultState = {
     user: {
         _id: "",
         name: '',
-        email: ''
+        email: '',
+        statuses: []
     },
     loggedIn: false,
 

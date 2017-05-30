@@ -17,3 +17,10 @@ export let logout = () => {
         type: 'LOGOUT',
     };
 }
+
+export let changeStatus = (user) => {
+    return {
+        type: 'STATUS',
+        user
+    }
+}

@@ -26,9 +26,10 @@ export default class Registration extends React.Component{
           }).then(res => {
               console.log('We have registered a user!', res.data.user);
               if(res.data.loggedIn){
+                  this.props.login(res.data.user);
                   this.props.history.push('/secure');
               }
-              this.props.login(res.data.user);
+              
           });
       }catch(e){
           console.error(`Caught: ${e}`)

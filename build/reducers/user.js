@@ -13,7 +13,8 @@ let users = (state = {}, action) => {
         return {
             _id: null,
             email: null,
-            name: null
+            name: null,
+            statuses: []
         };
         default:
         return state;
