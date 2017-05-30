@@ -8,7 +8,7 @@ import PublicHomepage from './PublicHomepage';
 export default class Authenticate extends React.Component{
   constructor(){
     super();
-    this.handleUserHome = this.handleLogout.bind(this);
+    this.handleUserHome = this.handleUserHome.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
