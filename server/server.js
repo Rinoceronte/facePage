@@ -35,3 +35,6 @@ Routes(app);
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}!`)
 });
+
+//command Line 
+//HOST=http://localhost:3000 DB=localhost:27017/facepage npm start
