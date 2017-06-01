@@ -27,9 +27,9 @@ app.use(express.static('public'));
 // middleware package that allows us to read the body in request objects.
 app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+// app.use(bodyParser.urlencoded({
+//   extended: true
+// }));
 
 // connection string. 
 mongoose.connect(`mongodb://${process.env.DB}`);
