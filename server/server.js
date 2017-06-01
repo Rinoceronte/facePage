@@ -1,5 +1,5 @@
 'use strict';
-import env from './env';
+// import env from './env';
 import express from 'express';
 import handlebars from 'express-handlebars';
 import http from 'http';
@@ -27,9 +27,18 @@ app.use(express.static('public'));
 // middleware package that allows us to read the body in request objects.
 app.use(bodyParser.json());
 
-// connection string. 
-mongoose.connect(`mongodb://localhost/${process.env.DB}`);
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
+// connection string. 
+mongoose.connect(`mongodb://${process.env.DB}`);
+
+//When you make these requests your state will change.
+//This means redux needs to know about those changes. 
+//In order for redux to notified, that their user state has changed, 
+//we must dispatch an action to propigate the new user state object to all of the children components
+//so that the cildren components wil re-render
 Routes(app);
 
 app.listen(process.env.PORT, () => {
