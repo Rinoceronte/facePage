@@ -1,5 +1,5 @@
 'use strict';
-//import env from './env';
+import env from './env';
 import express from 'express';
 import handlebars from 'express-handlebars';
 import http from 'http';
@@ -28,7 +28,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 // connection string. 
-mongoose.connect(`mongodb://${process.env.DB}`);
+mongoose.connect(`mongodb://localhost/${process.env.DB}`);
 
 Routes(app);
 
