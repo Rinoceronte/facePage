@@ -15,7 +15,7 @@ submitStatus()
       let date = Date.now();
       let statusUser = this.props.user._id;
       try {
-          axios.put(`http://localhost:3000/user/${this.props.user._id}/status`,{
+          axios.put(`/user/${this.props.user._id}/status`,{
             status
           }).then(res => {
               console.log('We have created a status', res.data.status);

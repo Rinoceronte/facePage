@@ -1,0 +1,28 @@
+
+body {
+   background-color: #e3e2dd;
+   padding: 0;
+   margin: auto;
+}
+
+.container {
+  width: 1008px;
+  margin: 0 auto;
+}
+
+header {
+  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #646464 0%, #0e0e0e 100%) repeat scroll 0 0;
+  color: #fff;
+  position: relative;
+  height: 83px;
+  
+  text-decoration: none;
+}
+      
+header > nav, .logo {
+  float: left;
+ }
+nav > ul {
+  position: absolute;
+  bottom: 0;
+}

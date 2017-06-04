@@ -19,7 +19,7 @@ export default class Registration extends React.Component{
       let email = this.refs.email.value;
       let password = this.refs.password.value;
       try {
-          axios.post('http://localhost:3000/users',{
+          axios.post('/users',{
             email,
             name,
             password

@@ -1,5 +1,5 @@
 'use strict';
-// import env from './env';
+//import env from './env';
 import express from 'express';
 import handlebars from 'express-handlebars';
 import http from 'http';
@@ -8,6 +8,15 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import config from '../webpack.config';
+
+if(process.env.ENVIRONMENT === 'dev'){
+  if(!process.env.DB){
+    process.env.DB = 'localhost:27017/facepageapp';
+  }
+  if(!process.env.PORT){
+    process.env.PORT = 3000;
+  }
+}
 
 // Initializing our express app
 const app = express();

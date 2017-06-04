@@ -1,4 +1,4 @@
-/******/ (function(modules) { //webpackBootstrap
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -8330,7 +8330,7 @@ var PublicHomepage = function (_React$Component) {
       var email = this.refs.email.value;
       var password = this.refs.password.value;
       try {
-        _axios2.default.post('http://localhost:3000/login', {
+        _axios2.default.post('/login', {
           email: email,
           password: password
         }).then(function (res) {
@@ -14416,7 +14416,7 @@ var Registration = function (_React$Component) {
                 var email = this.refs.email.value;
                 var password = this.refs.password.value;
                 try {
-                    _axios2.default.post('http://localhost:3000/users', {
+                    _axios2.default.post('/users', {
                         email: email,
                         name: name,
                         password: password
@@ -14569,7 +14569,7 @@ var Status = function (_React$Component) {
         var date = Date.now();
         var statusUser = this.props.user._id;
         try {
-          _axios2.default.put('http://localhost:3000/user/' + this.props.user._id + '/status', {
+          _axios2.default.put('/user/' + this.props.user._id + '/status', {
             status: status
           }).then(function (res) {
             console.log('We have created a status', res.data.status);
