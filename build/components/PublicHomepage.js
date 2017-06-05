@@ -57,12 +57,12 @@ handleClick(event){
       <div>
         <h1>Welcome to facePage.</h1>
         <div>
-            <h2>Sign In</h2>
-            <label> Email: <input type='text' ref='email'/></label>
-            <label> Password: <input type='password' ref='password'/></label>
-            <button type='button' onClick={this.handleClick}>Sign In</button>
+            
+            <label> Email: <input type='email' autoComplete='on' placeholder='email@email.com' ref='email' required/></label>
+            <label> Password: <input type='password' placeholder='Password' ref='password' required/></label>
+            <button type='button' onClick={this.handleClick}>Log In</button>
             {errorMessage}
-            <div>- or -</div>
+            <div><h2></h2></div>
             <div>
                 <button type='button' onClick={this.handleSignup}>Sign Up</button>
                 {/* <Link to="/signup">Sign-up</Link> */}

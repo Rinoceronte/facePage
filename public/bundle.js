@@ -8380,32 +8380,27 @@ var PublicHomepage = function (_React$Component) {
           'div',
           null,
           _react2.default.createElement(
-            'h2',
-            null,
-            'Sign In'
-          ),
-          _react2.default.createElement(
             'label',
             null,
             ' Email: ',
-            _react2.default.createElement('input', { type: 'text', ref: 'email' })
+            _react2.default.createElement('input', { type: 'email', autoComplete: 'on', placeholder: 'email@email.com', ref: 'email', required: true })
           ),
           _react2.default.createElement(
             'label',
             null,
             ' Password: ',
-            _react2.default.createElement('input', { type: 'password', ref: 'password' })
+            _react2.default.createElement('input', { type: 'password', placeholder: 'Password', ref: 'password', required: true })
           ),
           _react2.default.createElement(
             'button',
             { type: 'button', onClick: this.handleClick },
-            'Sign In'
+            'Log In'
           ),
           errorMessage,
           _react2.default.createElement(
             'div',
             null,
-            '- or -'
+            _react2.default.createElement('h2', null)
           ),
           _react2.default.createElement(
             'div',
@@ -14492,11 +14487,6 @@ var Registration = function (_React$Component) {
                     'button',
                     { type: 'button', onClick: this.handleClick },
                     'Register'
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    '- or - '
                 ),
                 _react2.default.createElement(
                     'div',

@@ -63,7 +63,7 @@ export default class Registration extends React.Component{
             <label>Password: <input type="password" ref="password" /></label>
             <label>Confirm Password: <input type="password" ref="passwordConfirm" /></label>
             <button type="button" onClick={this.handleClick}>Register</button>
-            <div>- or - </div>
+            {/*<div>- or - </div>*/}
             <div>
                 <button type="button" onClick={this.handleHome}>Home</button>
             </div>
