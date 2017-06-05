@@ -14183,7 +14183,11 @@ var FriendsList = function (_React$Component) {
                             null,
                             'Friend List'
                         ),
-                        friendList
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            friendList
+                        )
                     );
                 });
             };
