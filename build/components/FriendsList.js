@@ -46,7 +46,7 @@ export default class FriendsList extends React.Component {
                     <div key={user._id + '-user'}>
                         {user.name}
                         <h3>Friend List</h3>
-                        {friendList}
+                        <h2>{friendList}</h2>
                     </div>
                 )
             });
