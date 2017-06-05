@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link,} from 'react-router-dom';
 import axios from 'axios';
 
 import Registration from './Registration';
@@ -17,17 +17,16 @@ export default class PublicHomepage extends React.Component{
 
 handleClick(event){
       // signed in User
-      
       let email = this.refs.email.value;
       let password = this.refs.password.value;
       try {
           axios.post('/login',{
             email,
             password
-          }).then(res => {
+          }).then((res) => {
               if(res.data.loggedIn){
+                  this.props.login(res.data.user, res.data.loggedIn);
                   this.props.history.push('/secure');
-                  this.props.login(res.data.user);
               }
               else{
                 this.props.history.push('/');
@@ -57,11 +56,13 @@ handleClick(event){
       <div>
         <h1>Welcome to facePage.</h1>
         <div>
-            
-            <label> Email: <input type='email' autoComplete='on' placeholder='email@email.com' ref='email' required/></label>
-            <label> Password: <input type='password' placeholder='Password' ref='password' required/></label>
-            <button type='button' onClick={this.handleClick}>Log In</button>
-            {errorMessage}
+            {/* <h2>Log In</h2> */}
+            <div className="flexLogin">
+              <label><input type='email' autoComplete='on' placeholder='email@email.com' ref='email' maxLength="50" required/></label>
+              <label><input type='password' placeholder='Password' ref='password' maxLength="100" required/></label>
+              <button type='button' onClick={this.handleClick}>Log In</button>
+              {errorMessage}
+            </div>
             <div><h2></h2></div>
             <div>
                 <button type='button' onClick={this.handleSignup}>Sign Up</button>

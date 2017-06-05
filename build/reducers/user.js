@@ -8,7 +8,7 @@ let users = (state = {}, action) => {
     switch(action.type){
         case 'LOGIN':
         console.log('I am the User, trying to LOGIN.', action);
-        return {...action.user};
+        return {...state, ...action.user};
         case 'LOGOUT':
         return {
             _id: null,

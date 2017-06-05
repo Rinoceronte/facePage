@@ -8326,7 +8326,6 @@ var PublicHomepage = function (_React$Component) {
       var _this2 = this;
 
       // signed in User
-
       var email = this.refs.email.value;
       var password = this.refs.password.value;
       try {
@@ -8335,8 +8334,8 @@ var PublicHomepage = function (_React$Component) {
           password: password
         }).then(function (res) {
           if (res.data.loggedIn) {
+            _this2.props.login(res.data.user, res.data.loggedIn);
             _this2.props.history.push('/secure');
-            _this2.props.login(res.data.user);
           } else {
             _this2.props.history.push('/');
             _this2.setState({
@@ -8380,23 +8379,25 @@ var PublicHomepage = function (_React$Component) {
           'div',
           null,
           _react2.default.createElement(
-            'label',
-            null,
-            ' Email: ',
-            _react2.default.createElement('input', { type: 'email', autoComplete: 'on', placeholder: 'email@email.com', ref: 'email', required: true })
+            'div',
+            { className: 'flexLogin' },
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement('input', { type: 'email', autoComplete: 'on', placeholder: 'email@email.com', ref: 'email', maxLength: '50', required: true })
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement('input', { type: 'password', placeholder: 'Password', ref: 'password', maxLength: '100', required: true })
+            ),
+            _react2.default.createElement(
+              'button',
+              { type: 'button', onClick: this.handleClick },
+              'Log In'
+            ),
+            errorMessage
           ),
-          _react2.default.createElement(
-            'label',
-            null,
-            ' Password: ',
-            _react2.default.createElement('input', { type: 'password', placeholder: 'Password', ref: 'password', required: true })
-          ),
-          _react2.default.createElement(
-            'button',
-            { type: 'button', onClick: this.handleClick },
-            'Log In'
-          ),
-          errorMessage,
           _react2.default.createElement(
             'div',
             null,
@@ -12986,7 +12987,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // This should be an outline of every possible state your app can be in.
 var defaultState = {
     user: {
-        _id: "",
+        _id: '',
         name: '',
         email: '',
         statuses: []
@@ -14715,7 +14716,7 @@ var users = function users() {
     switch (action.type) {
         case 'LOGIN':
             console.log('I am the User, trying to LOGIN.', action);
-            return _extends({}, action.user);
+            return _extends({}, state, action.user);
         case 'LOGOUT':
             return {
                 _id: null,

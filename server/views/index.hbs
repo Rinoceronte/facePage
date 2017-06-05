@@ -7,13 +7,15 @@
         <link href="/main.css" rel="stylesheet">
     </head>
     <body>
-        <div id="app"></div>
+        <div class="page-wrap">
+            <div id="app"></div>
 
-        <!-- 
-            Notice we are referring to bundle.js as an absolute path to the root directory.
-            
-            Bundle.js will not exist until we run our webpack process.
-             -->
-        <script src="/bundle.js"></script>
+            <!-- 
+                Notice we are referring to bundle.js as an absolute path to the root directory.
+                
+                Bundle.js will not exist until we run our webpack process.
+                -->
+            <script src="/bundle.js"></script>
+        </div>
     </body>
 </html>
