@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link, } from 'react-router-dom';
 import axios from 'axios';
 import Status from './Status';
 import FriendsList from './FriendsList';
@@ -7,6 +7,7 @@ import FriendsList from './FriendsList';
 export default class PrivateHomepage extends React.Component{
   constructor(){
     super();
+    
     this.handleFriends = this.handleFriends.bind(this);
   }
 
@@ -18,7 +19,7 @@ export default class PrivateHomepage extends React.Component{
       
     return(
       <div>
-        <h1>Welcome {this.props.user.name}</h1>
+        <h1>Welcome <a href="#">{this.props.users.firstName} {this.props.users.lastName}</a></h1>
         <button type="button" onClick={this.handleFriends}>Friends</button><br/>
         <Status {...this.props}/>
         <Route path='/secure/friends' render={(routeProps) => <FriendsList {...this.props} {...routeProps} />} />

@@ -12,17 +12,39 @@ export default class Registration extends React.Component{
     this.handleHome = this.handleHome.bind(this);
   }
 
+    handleGender(){
+        let male = this.refs.male.checked;
+        let female = this.refs.female.checked;
+        let other = this.refs.other.checked;
+        if (male)
+        return "Male"
+        if (female)
+        return "Female"
+        if (other)
+        return "Other"
+    }
+
   handleClick(event){
       // Creates a new user
       if(true){
-      let name = this.refs.name.value;
-      let email = this.refs.email.value;
-      let password = this.refs.password.value;
+        let firstname = this.refs.firstname.value;
+        let lastname = this.refs.lastname.value;
+        let email = this.refs.email.value;
+        let password = this.refs.password.value;
+        let age = this.refs.age.value;
+        let gender = this.handleGender();
+        let school = this.refs.school.value;
+        let job = this.refs.job.value;
       try {
           axios.post('/users',{
-            email,
-            name,
-            password
+            firstName: firstname,
+            lastName: lastname,
+            email: email,
+            age: age,
+            gender: gender,
+            school: school,
+            job: job,
+            password: password
           }).then(res => {
               console.log('We have registered a user!', res.data.user);
               if(res.data.loggedIn){
@@ -58,10 +80,19 @@ export default class Registration extends React.Component{
     return(
       <div>
         <h3>Sign Up</h3>
-            <label>Name: <input type="text" ref="name" /></label>
-            <label>Email: <input type="email" ref="email" /></label>
-            <label>Password: <input type="password" ref="password" /></label>
-            <label>Confirm Password: <input type="password" ref="passwordConfirm" /></label>
+            <label>First Name: <input type="text" ref="firstname" /></label><br />
+            <label>Last Name: <input type="text" ref="lastname" /></label><br />
+            <label>Email: <input type="email" ref="email" /></label><br />
+            <label>Password: <input type="password" ref="password" /></label><br />
+            <label>Confirm Password: <input type="password" ref="passwordConfirm" /></label><br />
+            <label>Age: <input type="number" ref="age" /></label><br />
+                <label >Gender: 
+                    <input type="radio" name="genders" value="male" ref="male"/>Male
+                    <input type="radio" name="genders" value="female" ref="female"/>Female
+                    <input type="radio" name="genders" value="other" ref="other"/>Other
+                </label><br />
+                    <label>School: <input type="text" ref="school" /></label><br />
+                    <label>Job: <input type="text" ref="job" /></label><br />
             <button type="button" onClick={this.handleClick}>Register</button>
             {/*<div>- or - </div>*/}
             <div>

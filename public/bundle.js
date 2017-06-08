@@ -14074,7 +14074,7 @@ var Authenticate = function (_React$Component) {
           { type: 'button', onClick: this.handleLogout },
           'Log Out'
         ),
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/secure', render: function render() {
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/secure', render: function render() {
             return _react2.default.createElement(_PrivateHomepage2.default, _this2.props);
           } })
       );
@@ -14125,30 +14125,28 @@ var FriendsList = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (FriendsList.__proto__ || Object.getPrototypeOf(FriendsList)).call(this));
 
-        _this.handleUserHome = _this.handleUserHome.bind(_this);
-        _this.handleLogout = _this.handleLogout.bind(_this);
-
         _this.state = {
             users: []
         };
         return _this;
     }
 
-    /*   componentWillMount() {
-           axios.get('/users').then(data => {
-               //data will have an object of response.data.users list...
-               console.log(response.data);
-               if (response.data && response.data.users) {
-                   this.setState({
-                       users: response.data.users
-                   });
-               }
-           });
-        }
-    */
-
-
     _createClass(FriendsList, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            _axios2.default.get('/users').then(function (response) {
+                //data will have an object of response.data.users list...
+                console.log(response.data);
+                if (response.data) {
+                    _this2.setState({
+                        users: response.data
+                    });
+                }
+            });
+        }
+    }, {
         key: 'handleChange',
         value: function handleChange(field, event) {
             this.setState(_defineProperty({}, field, event.target.value));
@@ -14164,30 +14162,12 @@ var FriendsList = function (_React$Component) {
 
             var friendList = [];
             if (this.state.users && this.state.users.length > 0) {
-                userList = this.state.users.map(function (user) {
-                    if (user.friendList && user.friendList.length > 0) {
-                        friendList = user.friendList.map(function (task) {
-                            return _react2.default.createElement(
-                                'div',
-                                { key: task._id + '-task' },
-                                task.description
-                            );
-                        });
-                    }
+                friendList = this.state.users.map(function (user) {
+
                     return _react2.default.createElement(
                         'div',
                         { key: user._id + '-user' },
-                        user.name,
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            'Friend List'
-                        ),
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            friendList
-                        )
+                        user.name
                     );
                 });
             };
@@ -14199,16 +14179,11 @@ var FriendsList = function (_React$Component) {
                 'div',
                 null,
                 _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.handleUserHome },
-                    'Home2'
+                    'h1',
+                    null,
+                    'FriendsList'
                 ),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.handleLogout },
-                    'Log Out'
-                )
+                friendList
             );
 
             // /*(<div>
@@ -14337,7 +14312,13 @@ var PrivateHomepage = function (_React$Component) {
           'h1',
           null,
           'Welcome ',
-          this.props.user.name
+          _react2.default.createElement(
+            'a',
+            { href: '#' },
+            this.props.users.firstName,
+            ' ',
+            this.props.users.lastName
+          )
         ),
         _react2.default.createElement(
           'button',
@@ -14406,19 +14387,39 @@ var Registration = function (_React$Component) {
     }
 
     _createClass(Registration, [{
+        key: 'handleGender',
+        value: function handleGender() {
+            var male = this.refs.male.checked;
+            var female = this.refs.female.checked;
+            var other = this.refs.other.checked;
+            if (male) return "Male";
+            if (female) return "Female";
+            if (other) return "Other";
+        }
+    }, {
         key: 'handleClick',
         value: function handleClick(event) {
             var _this2 = this;
 
             // Creates a new user
             if (true) {
-                var name = this.refs.name.value;
+                var firstname = this.refs.firstname.value;
+                var lastname = this.refs.lastname.value;
                 var email = this.refs.email.value;
                 var password = this.refs.password.value;
+                var age = this.refs.age.value;
+                var gender = this.handleGender();
+                var school = this.refs.school.value;
+                var job = this.refs.job.value;
                 try {
                     _axios2.default.post('/users', {
+                        firstName: firstname,
+                        lastName: lastname,
                         email: email,
-                        name: name,
+                        age: age,
+                        gender: gender,
+                        school: school,
+                        job: job,
                         password: password
                     }).then(function (res) {
                         console.log('We have registered a user!', res.data.user);
@@ -14467,27 +14468,71 @@ var Registration = function (_React$Component) {
                 _react2.default.createElement(
                     'label',
                     null,
-                    'Name: ',
-                    _react2.default.createElement('input', { type: 'text', ref: 'name' })
+                    'First Name: ',
+                    _react2.default.createElement('input', { type: 'text', ref: 'firstname' })
                 ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'Last Name: ',
+                    _react2.default.createElement('input', { type: 'text', ref: 'lastname' })
+                ),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'label',
                     null,
                     'Email: ',
                     _react2.default.createElement('input', { type: 'email', ref: 'email' })
                 ),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'label',
                     null,
                     'Password: ',
                     _react2.default.createElement('input', { type: 'password', ref: 'password' })
                 ),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'label',
                     null,
                     'Confirm Password: ',
                     _react2.default.createElement('input', { type: 'password', ref: 'passwordConfirm' })
                 ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'Age: ',
+                    _react2.default.createElement('input', { type: 'number', ref: 'age' })
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'Gender:',
+                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'male', ref: 'male' }),
+                    'Male',
+                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'female', ref: 'female' }),
+                    'Female',
+                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'other', ref: 'other' }),
+                    'Other'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'School: ',
+                    _react2.default.createElement('input', { type: 'text', ref: 'school' })
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'Job: ',
+                    _react2.default.createElement('input', { type: 'text', ref: 'job' })
+                ),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'button',
                     { type: 'button', onClick: this.handleClick },
@@ -14725,7 +14770,8 @@ var users = function users() {
             return {
                 _id: null,
                 email: null,
-                name: null,
+                firstname: null,
+                lastname: null,
                 statuses: []
             };
         default:
