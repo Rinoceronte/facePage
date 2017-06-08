@@ -5,27 +5,26 @@ export default class FriendsList extends React.Component {
     constructor() {
         super();
 
-        this.handleUserHome = this.handleUserHome.bind(this);
-        this.handleLogout = this.handleLogout.bind(this);
+       
 
         this.state = {
             users: []
         };
     }
 
- /*   componentWillMount() {
-        axios.get('/users').then(data => {
+    componentWillMount() {
+        axios.get('/users').then(response => {
             //data will have an object of response.data.users list...
             console.log(response.data);
-            if (response.data && response.data.users) {
+            if (response.data) {
                 this.setState({
-                    users: response.data.users
+                    users: response.data
                 });
             }
         });
 
     }
-*/
+
     handleChange(field, event) {
         this.setState({ [field]: event.target.value });
     }
@@ -38,15 +37,13 @@ export default class FriendsList extends React.Component {
         
         let friendList = [];
         if (this.state.users && this.state.users.length > 0) {
-            userList = this.state.users.map(user => {
-                if (user.friendList && user.friendList.length > 0) {
-                    friendList = user.friendList.map(task => <div key={task._id + '-task'}>{task.description}</div>);
-                }
+            friendList = this.state.users.map(user => {
+                
                 return (
                     <div key={user._id + '-user'}>
                         {user.name}
-                        <h3>Friend List</h3>
-                        <h2>{friendList}</h2>
+                        
+        
                     </div>
                 )
             });
@@ -57,9 +54,8 @@ export default class FriendsList extends React.Component {
         )*/
         return (
             <div>
-                <button type="button" onClick={this.handleUserHome}>Home2</button><br/>
-                <button type="button" onClick={this.handleLogout}>Log Out</button>
-                
+                <h1>FriendsList</h1>
+                {friendList}
             </div>)
 
             // /*(<div>

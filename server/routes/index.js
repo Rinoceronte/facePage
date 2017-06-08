@@ -3,7 +3,7 @@
  * This file holds all the possible routes our app can make. It also has a reference to services to help keep logic out of this layer. 
  */
 'use strict';
-import {createUser, userLogin, pushStatus} from '../services/userService';
+import {createUser, getUsers, userLogin, pushStatus} from '../services/userService';
 import {createComment} from '../services/commentService';
 import {createStatus} from '../services/statusService';
 
@@ -14,6 +14,13 @@ export default (app) => {
     app.get('/', (req, res) => {
         res.render('index');
     });
+
+     app.get('/users', (req, res) => {
+        getUsers((error, users) => { 
+            res.json(users);
+        });
+    });
+
 
     app.post('/users', (req, res) => {
         console.log(req.body);

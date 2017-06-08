@@ -8,6 +8,10 @@ export let createUser = (user, next) => {
     User.create(user, next);
 };
 
+export let getUsers = (next) => {
+    User.find({}, next);
+};
+
 export let pushStatus = (userId, status, next) => {
     User.update({_id: userId}, {$push: {statuses: status}}, next);
 }
