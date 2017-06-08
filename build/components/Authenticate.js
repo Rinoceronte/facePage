@@ -29,7 +29,7 @@ export default class Authenticate extends React.Component{
         <button type="button" onClick={this.handleUserHome}>Home</button><br/>
         <button type="button" onClick={this.handleLogout}>Log Out</button>
         {/*<a href="#" onClick={this.handleLogout}>Log Outtt</a>*/}
-        <Route exact path="/secure" render={() => <PrivateHomepage {...this.props} />}/>
+        <Route path="/secure" render={() => <PrivateHomepage {...this.props} />}/>
       </div>
     );
   }
