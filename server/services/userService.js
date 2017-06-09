@@ -13,7 +13,13 @@ export let getUsers = (next) => {
 };
 
 export let pushStatus = (userId, status, next) => {
-    User.update({_id: userId}, {$push: {statuses: status}}, next);
+    User.update({_id: userId}, {$push: {statuses: status}}, () => {
+        User.findOne({_id: userId}, (err, data) => {
+            next(err, data);  
+        });
+});
+
+
 }
 export let userLogin = (user, next) => {
     User.findOne({email: user.email, password: user.password}, next);

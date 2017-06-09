@@ -18,9 +18,9 @@ export let logout = () => {
     };
 }
 
-export let changeStatus = (user) => {
+export let postedStatus = (status) => {
     return {
-        type: 'STATUS',
-        user
+        type: 'POSTED_STATUS',
+        status
     }
 }

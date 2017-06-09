@@ -12,7 +12,7 @@ const defaultState = {
         _id: '',
         name: '',
         email: '',
-        statuses: []
+        status: []
     },
     loggedIn: false,
 

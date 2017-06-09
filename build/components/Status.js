@@ -6,6 +6,7 @@ export default class Status extends React.Component{
   constructor(){
     super();
     this.submitStatus = this.submitStatus.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
 submitStatus()
@@ -25,7 +26,7 @@ submitStatus()
             // we must dispatch an action to propigate the new user state object to all of the children components.
             // so that the children components will re-render.
 
-              this.props.changeStatus(res.data);
+              this.props.postedStatus(res.data.status);
           });
       }catch(e){
           console.error(`Caught: ${e}`)
@@ -40,9 +41,22 @@ submitStatus()
         // });
     }
 }
+
+handleDelete (statusID) {
+  axios.delete(`/user/${this.props.user._id}/status/${statusID}`).then(()=> {
+
+  });
+} 
+
+
   render(){
-      let statuses = [];
-      statuses = this.props.user.statuses.map(s => <li key={s._id+'-status'}>{s.status}</li>);
+    let statuses = [];
+    statuses = this.props.user.status.map(status => {
+       return (<li key={status._id+'-status'}>{status.status}<button onClick={() => {
+          this.handleDelete (status._id);
+       }}>remove status</button></li>);
+
+    });
     return(
       <div>
         <div>

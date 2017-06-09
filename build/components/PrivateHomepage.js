@@ -16,10 +16,11 @@ export default class PrivateHomepage extends React.Component{
   };
 
   render(){
+    console.log(this.props);
       
     return(
       <div>
-        <h1>Welcome <a href="#">{this.props.users.firstName} {this.props.users.lastName}</a></h1>
+        <h1>Welcome <a href="#">{this.props.user.firstName} {this.props.user.lastName}</a></h1>
         <button type="button" onClick={this.handleFriends}>Friends</button><br/>
         <Status {...this.props}/>
         <Route path='/secure/friends' render={(routeProps) => <FriendsList {...this.props} {...routeProps} />} />

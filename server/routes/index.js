@@ -4,6 +4,7 @@
  */
 'use strict';
 import {createUser, getUsers, userLogin, pushStatus} from '../services/userService';
+//import * as userService from '../services/userService';
 import {createComment} from '../services/commentService';
 import {createStatus} from '../services/statusService';
 
@@ -24,15 +25,16 @@ export default (app) => {
 
     app.post('/users', (req, res) => {
         console.log(req.body);
-        createUser(req.body, (err, data) => {
+        createUser(req.body, (err, user) => {
             let response = {};
-            if(!err && data){
+            if(!err && user){
                 response = {
                     user: {
-                        _id: data._id,
-                        name: data.name,
-                        email: data.email,
-                        statuses: data.statuses
+                        _id: user._id,
+                        firstName: user.name,
+                        lastName: user.name,
+                        email: user.email,
+                        status: user.statuses
                     },
                     loggedIn: true
                 };
@@ -56,7 +58,7 @@ export default (app) => {
                         _id: data._id,
                         name: data.name,
                         email: data.email,
-                        statuses: data.statuses
+                        status: data.statuses
                     },
                     loggedIn: true
                 };
@@ -92,9 +94,9 @@ export default (app) => {
         console.log('is our id there?', req.params.id);
         console.log('is our correct status there?', req.body);
         console.log(req.body);
-        userService.pushStatus(req.params.id, req.body, (err, req) => {
+        pushStatus(req.params.id, req.body, (err, data) => {
             if(!err){
-                res.json({modifiedObject});
+                res.json({status: data.statuses});
             }
             else {
                 res.json({error: 'there was an error', err});
