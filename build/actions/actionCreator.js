@@ -24,3 +24,10 @@ export let postedStatus = (status) => {
         status
     }
 }
+
+export let deleteStatus = (status) => {
+    return {
+        type: 'DELETE_STATUS',
+        status
+    }
+}

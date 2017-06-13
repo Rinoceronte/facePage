@@ -31,8 +31,8 @@ export default (app) => {
                 response = {
                     user: {
                         _id: user._id,
-                        firstName: user.name,
-                        lastName: user.name,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
                         email: user.email,
                         status: user.statuses
                     },
@@ -40,6 +40,8 @@ export default (app) => {
                 };
             }
             else{
+                console.log(err);
+                console.log(user);
                 response = {error: 'User can not be created. Please try again'};
             }
 
@@ -56,12 +58,15 @@ export default (app) => {
                 response = {
                     user: {
                         _id: data._id,
-                        name: data.name,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
                         email: data.email,
                         status: data.statuses
                     },
                     loggedIn: true
                 };
+                console.log(response);
+
             }
             else{
                 response = {error: 'Password is incorrect'};

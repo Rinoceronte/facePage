@@ -10,7 +10,8 @@ import rootReducer from './reducers/index';
 const defaultState = {
     user: {
         _id: '',
-        name: '',
+        firstname: '',
+        lastname: '',
         email: '',
         status: []
     },

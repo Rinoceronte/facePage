@@ -12988,9 +12988,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var defaultState = {
     user: {
         _id: '',
-        name: '',
+        firstname: '',
+        lastname: '',
         email: '',
-        statuses: []
+        status: []
     },
     loggedIn: false
 
@@ -13985,10 +13986,17 @@ var logout = exports.logout = function logout() {
     };
 };
 
-var changeStatus = exports.changeStatus = function changeStatus(user) {
+var postedStatus = exports.postedStatus = function postedStatus(status) {
     return {
-        type: 'STATUS',
-        user: user
+        type: 'POSTED_STATUS',
+        status: status
+    };
+};
+
+var deleteStatus = exports.deleteStatus = function deleteStatus(status) {
+    return {
+        type: 'DELETE_STATUS',
+        status: status
     };
 };
 
@@ -14167,21 +14175,28 @@ var FriendsList = function (_React$Component) {
                     return _react2.default.createElement(
                         'div',
                         { key: user._id + '-user' },
-                        user.name
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#' },
+                                user.firstName + ' ',
+                                ' ',
+                                user.lastName
+                            )
+                        )
                     );
                 });
             };
 
-            /*       return (
-                       <h1>HI</h1>
-                   )*/
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(
-                    'h1',
+                    'h3',
                     null,
-                    'FriendsList'
+                    'Public Directory'
                 ),
                 friendList
             );
@@ -14305,6 +14320,8 @@ var PrivateHomepage = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log(this.props);
+
       return _react2.default.createElement(
         'div',
         null,
@@ -14314,16 +14331,14 @@ var PrivateHomepage = function (_React$Component) {
           'Welcome ',
           _react2.default.createElement(
             'a',
-            { href: '#' },
-            this.props.users.firstName,
-            ' ',
-            this.props.users.lastName
+            null,
+            this.props.user.firstName
           )
         ),
         _react2.default.createElement(
           'button',
           { type: 'button', onClick: this.handleFriends },
-          'Friends'
+          'Find Friends'
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement(_Status2.default, this.props),
@@ -14378,9 +14393,11 @@ var Registration = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Registration.__proto__ || Object.getPrototypeOf(Registration)).call(this));
 
-        _this.state = { errors: {
+        _this.state = {
+            errors: {
                 mismatchPasswords: false
-            } };
+            }
+        };
         _this.handleClick = _this.handleClick.bind(_this);
         _this.handleHome = _this.handleHome.bind(_this);
         return _this;
@@ -14511,11 +14528,11 @@ var Registration = function (_React$Component) {
                     'label',
                     null,
                     'Gender:',
-                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'male', ref: 'male' }),
+                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'Male', ref: 'male' }),
                     'Male',
-                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'female', ref: 'female' }),
+                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'Female', ref: 'female' }),
                     'Female',
-                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'other', ref: 'other' }),
+                    _react2.default.createElement('input', { type: 'radio', name: 'genders', value: 'Other', ref: 'other' }),
                     'Other'
                 ),
                 _react2.default.createElement('br', null),
@@ -14596,6 +14613,7 @@ var Status = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Status.__proto__ || Object.getPrototypeOf(Status)).call(this));
 
     _this.submitStatus = _this.submitStatus.bind(_this);
+    _this.handleDelete = _this.handleDelete.bind(_this);
     return _this;
   }
 
@@ -14619,7 +14637,7 @@ var Status = function (_React$Component) {
             // we must dispatch an action to propigate the new user state object to all of the children components.
             // so that the children components will re-render.
 
-            _this2.props.changeStatus(res.data);
+            _this2.props.postedStatus(res.data.status);
           });
         } catch (e) {
           console.error('Caught: ' + e);
@@ -14634,14 +14652,32 @@ var Status = function (_React$Component) {
       }
     }
   }, {
+    key: 'handleDelete',
+    value: function handleDelete(statusID) {
+      var _this3 = this;
+
+      _axios2.default.delete('/user/' + this.props.user._id + '/status/' + statusID).then(function () {
+        _this3.props.deleteStatus(res.data.status);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this4 = this;
+
       var statuses = [];
-      statuses = this.props.user.statuses.map(function (s) {
+      statuses = this.props.user.status.map(function (status) {
         return _react2.default.createElement(
           'li',
-          { key: s._id + '-status' },
-          s.status
+          { key: status._id + '-status' },
+          status.status,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                _this4.handleDelete(status._id);
+              } },
+            'remove status'
+          )
         );
       });
       return _react2.default.createElement(
@@ -14662,6 +14698,11 @@ var Status = function (_React$Component) {
             { type: 'button', onClick: this.submitStatus },
             'Submit'
           )
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Timeline'
         ),
         _react2.default.createElement(
           'ul',
@@ -14766,12 +14807,15 @@ var users = function users() {
         case 'LOGIN':
             console.log('I am the User, trying to LOGIN.', action);
             return _extends({}, state, action.user);
+        case 'POSTED_STATUS':
+            console.log('I am the User, trying to LOGIN.', action);
+            return _extends({}, state, { status: action.status });
         case 'LOGOUT':
             return {
                 _id: null,
                 email: null,
-                firstname: null,
-                lastname: null,
+                firstName: null,
+                lastName: null,
                 statuses: []
             };
         default:
