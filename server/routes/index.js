@@ -3,7 +3,7 @@
  * This file holds all the possible routes our app can make. It also has a reference to services to help keep logic out of this layer. 
  */
 'use strict';
-import {createUser, getUsers, userLogin, pushStatus} from '../services/userService';
+import {createUser, getUsers, userLogin, pushStatus, deleteStatus} from '../services/userService';
 //import * as userService from '../services/userService';
 import {createComment} from '../services/commentService';
 import {createStatus} from '../services/statusService';
@@ -108,5 +108,16 @@ export default (app) => {
             }
         })
     })
-    
+
+    app.delete('/user/:id/status/:statusId', (req, res) => {
+        console.log('is our id there?', req.params.id);
+        deleteStatus(req.params.id, req.params.statusId, (err, data) => {
+            if(!err){
+                res.json({status: data.statuses});
+            }
+            else {
+                res.json({error: 'there was an error', err});
+            }
+         })
+    })
 }

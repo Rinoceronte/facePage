@@ -10,6 +10,8 @@ let users = (state = {}, action) => {
         console.log('I am the User, trying to LOGIN.', action);
         return {...state, ...action.user};
         case 'POSTED_STATUS':
+        return {...state, ...action.user};
+        case 'DELETE_STATUS':
         console.log('I am the User, trying to LOGIN.', action);
         return {...state, status: action.status};
         case 'LOGOUT':
