@@ -14331,8 +14331,15 @@ var PrivateHomepage = function (_React$Component) {
           'Welcome ',
           _react2.default.createElement(
             'a',
+<<<<<<< Updated upstream
             null,
             this.props.user.firstName
+=======
+            { href: '#' },
+            this.props.user.firstName,
+            ' ',
+            this.props.user.lastName
+>>>>>>> Stashed changes
           )
         ),
         _react2.default.createElement(
@@ -14654,16 +14661,24 @@ var Status = function (_React$Component) {
   }, {
     key: 'handleDelete',
     value: function handleDelete(statusID) {
+<<<<<<< Updated upstream
       var _this3 = this;
 
       _axios2.default.delete('/user/' + this.props.user._id + '/status/' + statusID).then(function () {
         _this3.props.deleteStatus(res.data.status);
       });
+=======
+      _axios2.default.delete('/user/' + this.props.user._id + '/status/' + statusID).then(function (res) {});
+>>>>>>> Stashed changes
     }
   }, {
     key: 'render',
     value: function render() {
+<<<<<<< Updated upstream
       var _this4 = this;
+=======
+      var _this3 = this;
+>>>>>>> Stashed changes
 
       var statuses = [];
       statuses = this.props.user.status.map(function (status) {
@@ -14674,12 +14689,17 @@ var Status = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { onClick: function onClick() {
+<<<<<<< Updated upstream
                 _this4.handleDelete(status._id);
+=======
+                _this3.handleDelete(status._id);
+>>>>>>> Stashed changes
               } },
             'remove status'
           )
         );
       });
+
       return _react2.default.createElement(
         'div',
         null,
@@ -14808,6 +14828,11 @@ var users = function users() {
             console.log('I am the User, trying to LOGIN.', action);
             return _extends({}, state, action.user);
         case 'POSTED_STATUS':
+<<<<<<< Updated upstream
+=======
+            return _extends({}, state, action.user);
+        case 'DELETE_STATUS':
+>>>>>>> Stashed changes
             console.log('I am the User, trying to LOGIN.', action);
             return _extends({}, state, { status: action.status });
         case 'LOGOUT':

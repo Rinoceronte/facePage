@@ -22,12 +22,12 @@ export let postedStatus = (status) => {
     return {
         type: 'POSTED_STATUS',
         status
-    }
+    };
 }
 
 export let deleteStatus = (status) => {
     return {
         type: 'DELETE_STATUS',
         status
-    }
+    };
 }

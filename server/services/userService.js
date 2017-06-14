@@ -18,9 +18,34 @@ export let pushStatus = (userId, status, next) => {
             next(err, data);
         });
     });
-};
+}
 
+export let deleteStatus = (userId, statusId, next) => {
+    User.findOne({ _id: userId }, (error, user) => {
+        //console.log
+        if (user && user.statuses) {
+            let cloneArray = user.statuses.slice();
+            
+            user.statuses.forEach(function (s, index) {
+                if (s._id.toString() === statusId) {
+                    cloneArray.splice(index, 1);
+                    console.log(cloneArray.length + ': ' + user.statuses.length);
+                }
+            });
+            user.statuses = cloneArray;
+            //console.log(`saving user ${user}`);
+            user.save((err, data) => {
+                next(err, data);
+            });
 
+            // User.update({ _id: userId }, (err, data) => {
+            //     next(err, data);
+
+            // });
+        }
+
+    });
+}
 
 export let userLogin = (user, next) => {
     User.findOne({ email: user.email, password: user.password }, next);
