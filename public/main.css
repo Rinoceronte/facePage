@@ -1,7 +1,7 @@
 *{
     font-size: 18px;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Comfortaa', cursive;
     margin: 0 auto;
     color: #2fa88a;
 }
@@ -73,7 +73,7 @@ html{
     /*background-image: url("https://media.giphy.com/media/PeFSCXkkVTw6Q/giphy.gif");*/
     /*background-image: url("https://media.giphy.com/media/DbreaArbuPiJG/giphy.gif");*/
 
-    background-image: url("https://media.giphy.com/media/l2JJC1sjFGQ22rNSw/giphy.gif");
+    /*background-image: url("https://media.giphy.com/media/l2JJC1sjFGQ22rNSw/giphy.gif");*/
     /*background-image: url("https://media.giphy.com/media/kREagvAJBvH0s/giphy.gif");*/
     /*background-image: url("https://media.giphy.com/media/3oKIPzsIkC5cczAQ4E/giphy.gif");*/
     /*background-image: url("https://media.giphy.com/media/3oz8xYp8CIhl05M1Tq/giphy.gif");*/
@@ -98,7 +98,7 @@ html{
     /*background-image: url("https://media.giphy.com/media/mPPu9VhiS9vos/giphy.gif");*/
     /*background-image: url("http://media.giphy.com/media/UuDxS2EBRZSyA/giphy.gif");*/
     
-    /*background: linear-gradient(to bottom right, #232323, #2d3a37);*/
+    background: linear-gradient(to bottom right, #232323, #2d3a37);
 
     background-size: 100% 100%;
     background-repeat: no-repeat;
