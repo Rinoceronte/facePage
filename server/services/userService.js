@@ -38,6 +38,7 @@ export let deleteStatus = (userId, statusId, next) => {
                 next(err, data);
             });
 
+
             // User.update({ _id: userId }, (err, data) => {
             //     next(err, data);
 
@@ -46,6 +47,7 @@ export let deleteStatus = (userId, statusId, next) => {
 
     });
 }
+
 
 export let userLogin = (user, next) => {
     User.findOne({ email: user.email, password: user.password }, next);

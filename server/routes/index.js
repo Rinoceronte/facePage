@@ -3,10 +3,11 @@
  * This file holds all the possible routes our app can make. It also has a reference to services to help keep logic out of this layer. 
  */
 'use strict';
-import {createUser, getUsers, userLogin, pushStatus, deleteStatus} from '../services/userService';
+import { createUser, getUsers, userLogin, pushStatus, deleteStatus } from '../services/userService';
+
 //import * as userService from '../services/userService';
-import {createComment} from '../services/commentService';
-import {createStatus} from '../services/statusService';
+import { createComment } from '../services/commentService';
+import { createStatus } from '../services/statusService';
 
 export default (app) => {
 
@@ -16,8 +17,8 @@ export default (app) => {
         res.render('index');
     });
 
-     app.get('/users', (req, res) => {
-        getUsers((error, users) => { 
+    app.get('/users', (req, res) => {
+        getUsers((error, users) => {
             res.json(users);
         });
     });
@@ -27,7 +28,7 @@ export default (app) => {
         console.log(req.body);
         createUser(req.body, (err, user) => {
             let response = {};
-            if(!err && user){
+            if (!err && user) {
                 response = {
                     user: {
                         _id: user._id,
@@ -39,10 +40,10 @@ export default (app) => {
                     loggedIn: true
                 };
             }
-            else{
+            else {
                 console.log(err);
                 console.log(user);
-                response = {error: 'User can not be created. Please try again'};
+                response = { error: 'User can not be created. Please try again' };
             }
 
             // Defaults status to 200, res.status(200). This is where you would specify status if needed.
@@ -52,9 +53,9 @@ export default (app) => {
 
     app.post('/login', (req, res) => {
         userLogin(req.body, (err, data) => {
-           console.log(data)
+            console.log(data)
             let response = {};
-            if(!err && data){
+            if (!err && data) {
                 response = {
                     user: {
                         _id: data._id,
@@ -68,11 +69,11 @@ export default (app) => {
                 console.log(response);
 
             }
-            else{
-                response = {error: 'Password is incorrect'};
+            else {
+                response = { error: 'Password is incorrect' };
             }
             res.json(response);
-        })    
+        })
     })
 
     // app.post('/status', (req, res) => {
@@ -100,11 +101,11 @@ export default (app) => {
         console.log('is our correct status there?', req.body);
         console.log(req.body);
         pushStatus(req.params.id, req.body, (err, data) => {
-            if(!err){
-                res.json({status: data.statuses});
+            if (!err) {
+                res.json({ status: data.statuses });
             }
             else {
-                res.json({error: 'there was an error', err});
+                res.json({ error: 'there was an error', err });
             }
         })
     })

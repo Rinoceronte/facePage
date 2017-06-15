@@ -14185,6 +14185,20 @@ var FriendsList = function (_React$Component) {
                                 ' ',
                                 user.lastName
                             )
+                        ),
+                        _react2.default.createElement(
+                            'h3',
+                            null,
+                            user.email,
+                            _react2.default.createElement('br', null),
+                            user.age,
+                            _react2.default.createElement('br', null),
+                            user.gender,
+                            _react2.default.createElement('br', null),
+                            user.school,
+                            _react2.default.createElement('br', null),
+                            user.job,
+                            _react2.default.createElement('br', null)
                         )
                     );
                 });
@@ -14331,15 +14345,8 @@ var PrivateHomepage = function (_React$Component) {
           'Welcome ',
           _react2.default.createElement(
             'a',
-<<<<<<< Updated upstream
             null,
             this.props.user.firstName
-=======
-            { href: '#' },
-            this.props.user.firstName,
-            ' ',
-            this.props.user.lastName
->>>>>>> Stashed changes
           )
         ),
         _react2.default.createElement(
@@ -14661,41 +14668,29 @@ var Status = function (_React$Component) {
   }, {
     key: 'handleDelete',
     value: function handleDelete(statusID) {
-<<<<<<< Updated upstream
       var _this3 = this;
 
-      _axios2.default.delete('/user/' + this.props.user._id + '/status/' + statusID).then(function () {
+      _axios2.default.delete('/user/' + this.props.user._id + '/status/' + statusID).then(function (res) {
         _this3.props.deleteStatus(res.data.status);
       });
-=======
-      _axios2.default.delete('/user/' + this.props.user._id + '/status/' + statusID).then(function (res) {});
->>>>>>> Stashed changes
     }
   }, {
     key: 'render',
     value: function render() {
-<<<<<<< Updated upstream
       var _this4 = this;
-=======
-      var _this3 = this;
->>>>>>> Stashed changes
 
       var statuses = [];
       statuses = this.props.user.status.map(function (status) {
         return _react2.default.createElement(
           'li',
           { key: status._id + '-status' },
-          status.status,
+          status.status + ' ',
           _react2.default.createElement(
             'button',
             { onClick: function onClick() {
-<<<<<<< Updated upstream
                 _this4.handleDelete(status._id);
-=======
-                _this3.handleDelete(status._id);
->>>>>>> Stashed changes
               } },
-            'remove status'
+            'Remove Status'
           )
         );
       });
@@ -14827,14 +14822,14 @@ var users = function users() {
         case 'LOGIN':
             console.log('I am the User, trying to LOGIN.', action);
             return _extends({}, state, action.user);
+
         case 'POSTED_STATUS':
-<<<<<<< Updated upstream
-=======
-            return _extends({}, state, action.user);
-        case 'DELETE_STATUS':
->>>>>>> Stashed changes
-            console.log('I am the User, trying to LOGIN.', action);
             return _extends({}, state, { status: action.status });
+
+        case 'DELETE_STATUS':
+            console.log('Deleted a Status', action);
+            return _extends({}, state, { status: action.status });
+
         case 'LOGOUT':
             return {
                 _id: null,
@@ -14849,19 +14844,6 @@ var users = function users() {
 };
 
 exports.default = users;
-
-// switch(action.type){
-//     case 'SELECT_USER':
-//         console.log('Selecting user ');
-//         let newUserState = state.map(user => {
-//             if(user.id === action.userId){
-//                 return {...user, selected: true};
-//             }
-//             else {
-//                 return {...user, selected: false};
-//             }
-//         });
-//         return newUserState;
 
 /***/ }),
 /* 149 */

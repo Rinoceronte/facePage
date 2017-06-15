@@ -9,11 +9,14 @@ let users = (state = {}, action) => {
         case 'LOGIN':
         console.log('I am the User, trying to LOGIN.', action);
         return {...state, ...action.user};
+
         case 'POSTED_STATUS':
-        return {...state, ...action.user};
-        case 'DELETE_STATUS':
-        console.log('I am the User, trying to LOGIN.', action);
         return {...state, status: action.status};
+
+        case 'DELETE_STATUS':
+        console.log('Deleted a Status', action);
+        return {...state, status: action.status};
+        
         case 'LOGOUT':
         return {
             _id: null,
@@ -28,16 +31,3 @@ let users = (state = {}, action) => {
 }
 
 export default users;
-
-    // switch(action.type){
-    //     case 'SELECT_USER':
-    //         console.log('Selecting user ');
-    //         let newUserState = state.map(user => {
-    //             if(user.id === action.userId){
-    //                 return {...user, selected: true};
-    //             }
-    //             else {
-    //                 return {...user, selected: false};
-    //             }
-    //         });
-    //         return newUserState;

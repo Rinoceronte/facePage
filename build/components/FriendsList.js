@@ -42,7 +42,12 @@ export default class FriendsList extends React.Component {
                 return (
                     <div key={user._id + '-user'}>
                          <h2><a href="#">{user.firstName + ' '} {user.lastName}</a></h2>
-        
+                         <h3>{user.email}<br/>
+                             {user.age}<br/>
+                             {user.gender}<br/>
+                             {user.school}<br/>
+                             {user.job}<br/>
+                             </h3>
                     </div>
                 )
             });

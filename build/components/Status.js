@@ -43,22 +43,23 @@ export default class Status extends React.Component {
 
   handleDelete(statusID) {
     axios.delete(`/user/${this.props.user._id}/status/${statusID}`).then((res) => {
+      this.props.deleteStatus(res.data.status);
     });
   }
 
   render() {
     let statuses = [];
     statuses = this.props.user.status.map(status => {
-      return (<li key={status._id + '-status'}>{status.status}<button onClick={() => {
+      return (<li key={status._id + '-status'}>{status.status + ' '}<button onClick={() => {
         this.handleDelete(status._id);
-      }}>remove status</button></li>);
+      }}>Remove Status</button></li>);
     });
     
     return (
       <div>
         <div>
           <h3>What's on your mind?</h3>
-          <textarea ref='status' id='newStatus'></textarea><br />
+          <textarea ref='status' id='newStatus'></textarea><br/>
           <button type="button" onClick={this.submitStatus}>Submit</button>
         </div>
         <h3>Timeline</h3>
