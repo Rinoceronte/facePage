@@ -4,7 +4,7 @@
 // and then returns the new state
 // it is a pure function
 
-let users = (state = {}, action) => {
+let user = (state = {}, action) => {
     switch(action.type){
         case 'LOGIN':
         console.log('I am the User, trying to LOGIN.', action);
@@ -30,4 +30,4 @@ let users = (state = {}, action) => {
     }
 }
 
-export default users;
+export default user;
